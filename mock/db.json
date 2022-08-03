@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "username": "哈哈哈",
+      "password": "12345",
+      "age": "23",
+      "address": "山东青岛"
+    },
+    {
+      "username": "嘿嘿嘿",
+      "password": "12345",
+      "age": "23",
+      "address": "山东青岛"
+    }
+  ]
+}
