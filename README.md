@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Twitter-frontend
+一个仿 twitter 的前端项目，基于 react 实现
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 如何启动
+npm start
 
-## Available Scripts
+## 如何访问
+http://localhost:3000/
 
-In the project directory, you can run:
+## 发送接口
+request: get post put patch delete
+service: const getUser = (params) => get('/user', params).then((res) => {
+  return res;
+});
 
-### `npm start`
+## 后端的一个 web 服务
+- 使用的是 json-server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Twitter 的前端页面模板
+大家可以直接仿照 doc 目录下的 twitter 页面的截图来开发前端 UI 页面。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## React 五步法
+- 第一步：将设计好的 UI 划分为组件层级
+- 第二步：用 React 创建一个静态版本
+- 第三步：确定 UI state 的最小（且完整）表示
+- 第四步：确定 state 放置的位置
+- 第五步：添加反向数据流
 
-### `npm test`
+## style 技术选择
+- css 无法编写嵌套
+- scss 写简单的嵌套 -> css
+- css modules 不用关系命名空间，不会出现会被覆盖的样式
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 工程化的配置信息
+- craco.config.js : 配置 webpack 文件快捷方式
+- jsconfig.json : 他是给 vscode 使用的 js 相关配置文件 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## H5页面适配方案
+- VW 100 
+- VH 100

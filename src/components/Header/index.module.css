@@ -1,0 +1,19 @@
+
+
+.header {
+  height: 50px;
+  text-align: center;
+  background-color: #ccc;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 15px;
+  left:20px;
+  font-size: 18px;
+}
+
+.twitterLog {
+  height: 30px;
+  margin-top: 10px;
+}
