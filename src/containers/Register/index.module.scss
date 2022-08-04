@@ -5,6 +5,17 @@
     margin: 0 30px;
   }
 
+
+  .formContainer {
+    :global(.adm-list-body ){
+      background: none;
+      border:none;
+    }
+    :global(.adm-list-item-content ){
+      border: none;
+    }
+  }
+
   .formTitle{
     font-size: 25px;
     font-weight: 700;
@@ -13,7 +24,7 @@
   } 
 
   .input {
-    composes: import  from '../../common.module.css'; 
+    composes: input from '../../common.module.css'; 
   }
 
   .changeTypeButton {
