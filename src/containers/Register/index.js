@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Input, Button, Form } from 'antd-mobile';
 import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
+import TInput from '@components/TInput';
 
 import style from './index.module.scss';
 
@@ -12,7 +13,7 @@ import style from './index.module.scss';
 const Register = () => {
   const [form] = Form.useForm();
   const [formData] = useState({
-    name: 'calliechen',
+    name: '',
     tel: '',
     email: '',
     birthday: '2022-02-03',
@@ -48,22 +49,16 @@ const Register = () => {
       <div className={style.form}>
         <div className={style.formTitle}>Create Your Account</div>
         <Form form={form} initialValues={formData} className={style.formContainer}>
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: "Username can't be empty" }]}
-          >
-            <Input placeholder="Name" className={style.input} />
+          <Form.Item name="name" rules={[{ required: true, message: "Username can't be empty" }]}>
+            <TInput length={10} label="Name" />
           </Form.Item>
           {accountType === ACCOUNT_TYPE.TEL && (
-          <Form.Item
-            name="tel"
-            rules={[{ required: true, message: "Phone number can't be empty" }]}
-          >
-            <Input placeholder="Phone" className={style.input} />
+          <Form.Item name="tel" rules={[{ required: true, message: "Phone number can't be empty" }]}>
+            <TInput length={50} label="Phone" />
           </Form.Item>
           )}
           {accountType === ACCOUNT_TYPE.EMAIL && (
-          <Form.Item 
+          <Form.Item
             name="email"
             rules={[{ required: true, message: "Email can't be empty" }]}
           >
