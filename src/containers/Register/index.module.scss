@@ -1,56 +1,67 @@
-@value tBlue #1d9bf0;  
-@value tGrey #868a8c;
 
-  .form {
-    margin: 0 30px;
+@import '../../common.module.scss';
+
+.common {
+  composes: input from '../../common.module.scss';
+}
+
+.form {
+  margin: 0 30px;
+}
+
+
+.formContainer {
+  :global(.adm-list-body ){
+    background: none;
+    border:none;
   }
-
-
-  .formContainer {
-    :global(.adm-list-body ){
-      background: none;
-      border:none;
-    }
-    :global(.adm-list-item-content ){
-      border: none;
-    }
+  :global(.adm-list-item) {
+    padding: 0;
+    margin:0;
+    background: none;
   }
-
-  .formTitle{
-    font-size: 25px;
-    font-weight: 700;
-    height: 68px;
-    line-height: 68px;
-  } 
-
-  .input {
-    composes: input from '../../common.module.css'; 
+  :global(.adm-list-item-content ){
+    border: none;
+    padding: 0;
+    margin:0;
   }
+}
 
-  .changeTypeButton {
-    color: tBlue;
-  }
+.formTitle{
+  font-size: 25px;
+  font-weight: 700;
+  height: 68px;
+  line-height: 68px;
+} 
 
-  .birthdayTitle {
-    font-size: 14px;
-    color: #000;
-    margin-top: 25px;
-    font-weight: 700;
-  }
+.input {
+  composes: input from '../../common.module.scss'; 
+}
 
-  .footer {
-    position: fixed;
-    bottom: 20px;
-    text-align: center;
-    width: 100%;
-  }
+.changeTypeButton {
+  color: $tBlue;
+}
 
-  .footerButton {
-    margin: 0 auto;
-    border-radius: 50px;
-    background-color: tGrey;
-    color: #fff;
-    font-size: 16px;
-    width: 80%;
-    height: 40px;
-  }
+.birthdayTitle {
+  font-size: 14px;
+  color: #000;
+  margin-top: 25px;
+  font-weight: 700;
+}
+
+.footer {
+  position: fixed;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.footerButton {
+  margin: 0 auto;
+  border-radius: 50px;
+  background-color: $tGrey;
+  color: #fff;
+  font-size: 16px;
+  width: 80%;
+  height: 40px;
+}

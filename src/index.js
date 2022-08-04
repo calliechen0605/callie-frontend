@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Register from './containers/Register';
-import { startVconsole } from './utils';
+// import { startVconsole } from './utils';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,4 +12,4 @@ ReactDOM.render(
 );
 
 // 启动 vconsole
-startVconsole();
+// startVconsole();

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Input, Button, Form } from 'antd-mobile';
 import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
+import TInput from '@components/TInput';
 
 import style from './index.module.scss';
 
@@ -10,8 +11,9 @@ import style from './index.module.scss';
  * Registration Page
  */
 const Register = () => {
+  const [form] = Form.useForm();
   const [formData] = useState({
-    name: 'calliechen',
+    name: '',
     tel: '',
     email: '',
     birthday: '2022-02-03',
@@ -32,22 +34,34 @@ const Register = () => {
     setAccountType(ACCOUNT_TYPE.TEL);
   };
 
+  const onClickNextStep = async () => {
+    const validate = await form.validateFields();
+
+    if (validate) {
+      const data = form.getFieldValue();
+      console.log(validate);
+    }
+  };
+
   return (
     <div>
       <Header />
       <div className={style.form}>
         <div className={style.formTitle}>Create Your Account</div>
-        <Form initialValues={formData} className={style.formContainer}>
-          <Form.Item name="name">
-            <Input placeholder="Name" className={style.input} />
+        <Form form={form} initialValues={formData} className={style.formContainer}>
+          <Form.Item name="name" rules={[{ required: true, message: "Username can't be empty" }]}>
+            <TInput length={10} label="Name" />
           </Form.Item>
           {accountType === ACCOUNT_TYPE.TEL && (
-          <Form.Item name="tel">
-            <Input placeholder="Phone" className={style.input} />
+          <Form.Item name="tel" rules={[{ required: true, message: "Phone number can't be empty" }]}>
+            <TInput length={50} label="Phone" />
           </Form.Item>
           )}
           {accountType === ACCOUNT_TYPE.EMAIL && (
-          <Form.Item name="email">
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: "Email can't be empty" }]}
+          >
             <Input placeholder="Email" className={style.input} />
           </Form.Item>
           )}
@@ -66,7 +80,7 @@ const Register = () => {
         </Form>
       </div>
       <div className={style.footer}>
-        <Button className={style.footerButton}>Next</Button>
+        <Button className={style.footerButton} onClick={onClickNextStep}>Next</Button>
       </div>
     </div>
   );
