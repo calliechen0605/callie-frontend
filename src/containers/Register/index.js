@@ -14,7 +14,7 @@ const Register = () => {
     name: 'calliechen',
     tel: '',
     email: '',
-    birthday: '',
+    birthday: '2022-02-03',
   });
 
   const ACCOUNT_TYPE = {
