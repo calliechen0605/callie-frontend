@@ -14,5 +14,13 @@
   },
   "env": {
     "browser": true
+  },
+  "settings": {
+    "alias": {
+      "map": [
+        ["@components", "./src/components"],
+        ["@assets", "./src/assets"]
+      ]
+    }
   }
 }

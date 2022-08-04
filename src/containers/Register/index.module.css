@@ -13,7 +13,7 @@
   } 
 
   .input {
-    composes: import  from '../../common.module.css'; 
+    composes: import from '../../common.module.css'; 
   }
 
   .changeTypeButton {
