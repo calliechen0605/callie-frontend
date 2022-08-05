@@ -26,7 +26,7 @@ const DatePickerInput = ({
           setVisible(false);
         }}
         onConfirm={(val) => {
-          onChange(moment(value).format('YYYYMMDD'));
+          onChange(moment(val).format('YYYY-MM-DD'));
         }}
       />
       <div className={style.birthdayInput} onClick={onClickDatePicker}>
