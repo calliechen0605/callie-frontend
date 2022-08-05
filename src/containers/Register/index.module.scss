@@ -70,5 +70,25 @@
 .footerButton {
   composes: footerButtonDisabled;
   background-color: #000;
-
 }
+
+.showLabel{
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  :global(span){
+    color: $tGrey;
+  }
+}
+
+.showLabelContainer {
+  border: solid 1px $tGreyWhite;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.label {
+  font-size: 18px;
+  margin: 30px 0 10px 0;
+}
+

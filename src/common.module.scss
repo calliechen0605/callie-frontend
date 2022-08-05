@@ -1,8 +1,9 @@
 $tBlue:#1d9bf0;  
 $tGrey:#868a8c;
+$tGreyWhite: #cfd9de;
 
 .input {
-  border: solid 1px #cfd9de;
+  border: solid 1px $tGreyWhite;
   border-radius: 6px;
   height: 53px;
   padding: 5px 10px;
