@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from 'react';
-import { Input, Button, Form } from 'antd-mobile';
+import { Form } from 'antd-mobile';
 import DatePickerInput from '@components/DatePickerInput';
 import Header from '@components/Header';
 import TInput from '@components/TInput';
+import Footer from './components/Footer';
 
 import style from './index.module.scss';
 
@@ -16,7 +17,7 @@ const Register = () => {
     name: '',
     tel: '',
     email: '',
-    birthday: '2022-02-03',
+    birthday: '',
   });
 
   const ACCOUNT_TYPE = {
@@ -25,6 +26,7 @@ const Register = () => {
   };
 
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.TEL);
+  const [footerButtonDisabled, setFooterButtonDisabled] = useState(true);
 
   const onAccountTypeChange = () => {
     if (accountType === ACCOUNT_TYPE.TEL) {
@@ -36,10 +38,24 @@ const Register = () => {
 
   const onClickNextStep = async () => {
     const validate = await form.validateFields();
-
     if (validate) {
-      const data = form.getFieldValue();
       console.log(validate);
+    }
+  };
+
+  const onValuesChange = async () => {
+    try {
+      const validate = await form.validateFields();
+      if (validate) {
+        setFooterButtonDisabled(false);
+        return;
+      }
+    } catch (e) {
+      if (e.errorFields.length === 0) {
+        setFooterButtonDisabled(false);
+        return;
+      }
+      setFooterButtonDisabled(true);
     }
   };
 
@@ -48,26 +64,33 @@ const Register = () => {
       <Header />
       <div className={style.form}>
         <div className={style.formTitle}>Create Your Account</div>
-        <Form form={form} initialValues={formData} className={style.formContainer}>
+        <Form
+          form={form}
+          initialValues={formData}
+          onValuesChange={onValuesChange}
+          className={style.formContainer}
+        >
           <Form.Item name="name" rules={[{ required: true, message: "Username can't be empty" }]}>
             <TInput length={10} label="Name" />
           </Form.Item>
           {accountType === ACCOUNT_TYPE.TEL && (
-          <Form.Item name="tel" rules={[{ required: true, message: "Phone number can't be empty" }]}>
+          <Form.Item
+            name="tel"
+            rules={[{
+              required: true, message: 'Please enter a valid phone number', pattern: /^[+]?[\s./0-9]*[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/g,
+            }]}
+          >
             <TInput length={50} label="Phone" />
           </Form.Item>
           )}
           {accountType === ACCOUNT_TYPE.EMAIL && (
-          <Form.Item
-            name="email"
-            rules={[{ required: true, message: "Email can't be empty" }]}
-          >
-            <Input placeholder="Email" className={style.input} />
+          <Form.Item name="email" rules={[{ required: true, message: 'Please enter a valid email address', pattern: /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/g }]}>
+            <TInput label="Email" />
           </Form.Item>
           )}
-          <div className={style.changeTypeButton} onClick={onAccountTypeChange}>
+          <span className={style.changeTypeButton} onClick={onAccountTypeChange}>
             {accountType === 'tel' ? 'Use email instead' : 'Use phone number instead'}
-          </div>
+          </span>
           <div className={style.birthdayTitle}>Date of birth</div>
           <div>
             This will not be shown publicly.
@@ -79,9 +102,7 @@ const Register = () => {
           </Form.Item>
         </Form>
       </div>
-      <div className={style.footer}>
-        <Button className={style.footerButton} onClick={onClickNextStep}>Next</Button>
-      </div>
+      <Footer disabled={footerButtonDisabled} onClickNextStep={onClickNextStep} />
     </div>
   );
 };
