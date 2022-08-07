@@ -1,23 +1,22 @@
+import { useAppContext } from '@utils/context';
 import { CloseOutline } from 'antd-mobile-icons';
-import { PropTypes } from 'prop-types';
 import logo from '../../assets/twitter-log.svg';
 
 import style from './index.module.scss';
 
-const Header = ({
-  onClickClose,
-}) => (
-  <div className={style.header}>
-    {onClickClose && <CloseOutline className={style.closeIcon} onClick={onClickClose} />}
-    <img src={logo} alt="twitter-logo" className={style.twitterLog} />
-  </div>
-);
-
-Header.protoTypes = {
-  onClickClose: PropTypes.func,
-};
-Header.defaultProps = {
-  onClickClose: null,
+const Header = () => {
+  const [store] = useAppContext();
+  return (
+    <div className={style.header}>
+      {store.closeHeaderHandler && (
+      <CloseOutline
+        className={style.closeIcon}
+        onClick={store.closeHeaderHandler}
+      />
+      )}
+      <img src={logo} alt="twitter-logo" className={style.twitterLog} />
+    </div>
+  );
 };
 
 export default Header;
