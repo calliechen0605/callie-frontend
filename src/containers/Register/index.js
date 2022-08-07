@@ -13,15 +13,19 @@ const STEP = {
  * Registration Page
  */
 const Register = () => {
-  const [step, setStep] = useState(STEP.TWO);
+  const [step, setStep] = useState(STEP.ONE);
+  const [userInfo, setUserInfo] = useState();
 
   const gotoNextStepHandler = (data) => {
-    console.log(data);
+    setUserInfo(data);
     setStep(STEP.TWO);
   };
 
-  const confirmRegistrationHandler = () => {
-
+  const confirmRegistrationHandler = (password) => {
+    console.log({
+      password,
+      ...userInfo,
+    });
   };
 
   return (
@@ -30,7 +34,7 @@ const Register = () => {
       {step === STEP.ONE && <StepOne gotoNextStepHandler={gotoNextStepHandler} />}
       {step === STEP.TWO && (
       <StepTwo
-        userInfo={{}}
+        userInfo={userInfo}
         confirmRegistrationHandler={confirmRegistrationHandler}
       />
       )}

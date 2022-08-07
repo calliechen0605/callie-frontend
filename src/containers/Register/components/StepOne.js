@@ -41,8 +41,7 @@ const StepOne = ({
   const onClickNextStep = async () => {
     const validate = await form.validateFields();
     if (validate) {
-      console.log(validate);
-      gotoNextStepHandler();
+      gotoNextStepHandler(validate);
     }
   };
 
@@ -104,7 +103,7 @@ const StepOne = ({
           </Form.Item>
         </Form>
       </div>
-      <Footer disabled={footerButtonDisabled} onClickNextStep={onClickNextStep} />
+      <Footer label="Next" disabled={footerButtonDisabled} onClickNextStep={onClickNextStep} />
     </div>
   );
 };

@@ -11,9 +11,25 @@ const StepTwo = ({
   confirmRegistrationHandler,
   userInfo,
 }) => {
+  const [password, setPassword] = useState();
+  const [disabled, setDisabled] = useState(true);
+
   const onConfirmRegistration = () => {
-    confirmRegistrationHandler();
+    confirmRegistrationHandler(password);
   };
+
+  const onChangePwd = (val) => {
+    setPassword(val);
+  };
+
+  const onChangeConfirmPwd = (val) => {
+    if (val === password) {
+      setDisabled(false);
+      return;
+    }
+    setDisabled(true);
+  };
+
   return (
     <div className={style.StepTwo}>
       <div className={style.form}>
@@ -41,11 +57,12 @@ const StepTwo = ({
           </div>
         </div>
         <div className={style.label}>Please enter your password</div>
-        <Input className={style.input} />
+        <Input className={style.input} onChange={onChangePwd} />
         <div className={style.label}>Please confirm your password </div>
-        <Input className={style.input} type="password" />
+        <Input className={style.input} type="password" onChange={onChangeConfirmPwd} />
+        {disabled && <div className={style.showTip}>Passwords are not consistent</div>}
       </div>
-      <Footer label="Confirm" onClickNextStep={onConfirmRegistration} />
+      <Footer disabled={disabled} label="Confirm" onClickNextStep={onConfirmRegistration} />
     </div>
   );
 };
