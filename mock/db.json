@@ -1,0 +1,39 @@
+{
+  "user": [
+    {
+      "password": "1",
+      "username": "yixuac",
+      "tel": "22",
+      "birthday": "2022-08-07",
+      "id": 1
+    },
+    {
+      "password": "111",
+      "username": "11",
+      "tel": "1382828",
+      "birthday": "2022-08-07",
+      "id": 2
+    },
+    {
+      "password": "111",
+      "username": "11",
+      "tel": "1382828",
+      "birthday": "2022-08-07",
+      "id": 3
+    },
+    {
+      "password": "111",
+      "username": "11",
+      "tel": "1382828",
+      "birthday": "2022-08-07",
+      "id": 4
+    },
+    {
+      "password": "111",
+      "username": "11",
+      "tel": "1382828",
+      "birthday": "2022-08-07",
+      "id": 5
+    }
+  ]
+}

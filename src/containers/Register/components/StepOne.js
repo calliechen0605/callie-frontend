@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import DatePickerInput from '@components/DatePickerInput';
+import TInput from '@components/TInput';
 import { useState } from 'react';
 import { Form } from 'antd-mobile';
 import PropTypes from 'prop-types';
-import DatePickerInput from '@components/DatePickerInput';
-import TInput from '@components/TInput';
 import Footer from './Footer';
-
 import style from '../index.module.scss';
 
 /**
@@ -71,7 +70,7 @@ const StepOne = ({
           onValuesChange={onValuesChange}
           className={style.formContainer}
         >
-          <Form.Item name="name" rules={[{ required: true, message: "Username can't be empty" }]}>
+          <Form.Item name="username" rules={[{ required: true, message: "Username can't be empty" }]}>
             <TInput length={10} label="Name" />
           </Form.Item>
           {accountType === ACCOUNT_TYPE.TEL && (

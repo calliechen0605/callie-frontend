@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import { registerUser } from '@services/register';
+import { Toast } from 'antd-mobile';
 import { useState } from 'react';
 import Header from '@components/Header';
+import Display from '@components/Display';
 import StepOne from './components/StepOne';
 import StepTwo from './components/StepTwo';
 
@@ -14,30 +17,42 @@ const STEP = {
  */
 const Register = () => {
   const [step, setStep] = useState(STEP.ONE);
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState({});
 
   const gotoNextStepHandler = (data) => {
     setUserInfo(data);
     setStep(STEP.TWO);
   };
 
-  const confirmRegistrationHandler = (password) => {
-    console.log({
+  const confirmRegistrationHandler = async (password) => {
+    const res = await registerUser({
       password,
       ...userInfo,
     });
+    if (res.success) {
+      Toast.show('Login Successfully');
+      return;
+    }
+    Toast.show('Login Failed');
+  };
+
+  const onClickClose = () => {
+    setStep(STEP.ONE);
   };
 
   return (
     <div>
-      <Header />
-      {step === STEP.ONE && <StepOne gotoNextStepHandler={gotoNextStepHandler} />}
-      {step === STEP.TWO && (
-      <StepTwo
-        userInfo={userInfo}
-        confirmRegistrationHandler={confirmRegistrationHandler}
-      />
-      )}
+      <Header onClickClose={onClickClose} />
+      <Display visible={step === STEP.ONE}>
+        <StepOne gotoNextStepHandler={gotoNextStepHandler} />
+      </Display>
+
+      <Display visible={step === STEP.TWO}>
+        <StepTwo
+          userInfo={userInfo}
+          confirmRegistrationHandler={confirmRegistrationHandler}
+        />
+      </Display>
 
     </div>
   );
