@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
  *  display / hide other components
  */
 
-
 const Display = ({
   visible,
   children,

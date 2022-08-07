@@ -36,13 +36,12 @@ const Register = () => {
     Toast.show('Login Failed');
   };
 
-  const onClickClose = () => {
-    setStep(STEP.ONE);
-  };
+  // const onClickClose = () => {
+  // setStep(STEP.ONE);
+  // };
 
   return (
     <div>
-      <Header onClickClose={onClickClose} />
       <Display visible={step === STEP.ONE}>
         <StepOne gotoNextStepHandler={gotoNextStepHandler} />
       </Display>
