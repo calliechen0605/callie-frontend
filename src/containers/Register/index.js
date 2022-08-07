@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { registerUser } from '@services/register';
 import { Toast } from 'antd-mobile';
-import { useState } from 'react';
-import Header from '@components/Header';
+import { useEffect, useState } from 'react';
+import { useAppContext } from '@utils/context';
+import { useNavigate } from 'react-router-dom';
 import Display from '@components/Display';
 import StepOne from './components/StepOne';
 import StepTwo from './components/StepTwo';
@@ -18,6 +19,22 @@ const STEP = {
 const Register = () => {
   const [step, setStep] = useState(STEP.ONE);
   const [userInfo, setUserInfo] = useState({});
+
+  const [, setStore] = useAppContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (step === STEP.ONE) {
+      setStore({
+        closeHeaderHandler: () => navigate('/login'),
+      });
+    }
+    if (step === STEP.TWO) {
+      setStore({
+        closeHeaderHandler: () => setStep(STEP.ONE),
+      });
+    }
+  }, [step]);
 
   const gotoNextStepHandler = (data) => {
     setUserInfo(data);
@@ -36,19 +53,16 @@ const Register = () => {
     Toast.show('Login Failed');
   };
 
-  // const onClickClose = () => {
-  // setStep(STEP.ONE);
-  // };
-
   return (
     <div>
       <Display visible={step === STEP.ONE}>
         <StepOne gotoNextStepHandler={gotoNextStepHandler} />
       </Display>
 
-      <Display visible={step === STEP.TWO}>
+      <Display visible={step === STEP.TWO} isMounted>
         <StepTwo
           userInfo={userInfo}
+          goToStepOneHandler={() => setStep(STEP.ONE)}
           confirmRegistrationHandler={confirmRegistrationHandler}
         />
       </Display>
